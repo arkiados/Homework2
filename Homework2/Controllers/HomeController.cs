@@ -54,31 +54,31 @@ namespace Homework2.Controllers
                 {
                     case "id":
                         {
-                            contacts = contacts.OrderByDescending(s => s.Id);
+                            contacts = contacts.OrderByDescending(s => s.Id).ToArray();
                             break;
                         }
                     case "name":
                         {
-                            contacts = contacts.OrderByDescending(s => s.Name);
+                            contacts = contacts.OrderByDescending(s => s.Name).ToArray();
                             break;
                         }
                     case "city":
                         {
-                            contacts = contacts.OrderByDescending(s => s.City);
+                            contacts = contacts.OrderByDescending(s => s.City).ToArray();
                             break;
                         }
                     case "state":
                         {
-                            contacts = contacts.OrderByDescending(s => s.State);
+                            contacts = contacts.OrderByDescending(s => s.State).ToArray();
                             break;
                         }
                     case "phone":
                         {
-                            contacts = contacts.OrderByDescending(s => s.Phone);
+                            contacts = contacts.OrderByDescending(s => s.Phone).ToArray();
                             break;
                         }
                     default:
-                        contacts = contacts.OrderBy(s => s.Id);
+                        contacts = contacts.OrderBy(s => s.Id).ToArray();
                         break;
                 }
             }
