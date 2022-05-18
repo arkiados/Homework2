@@ -34,7 +34,7 @@ namespace Homework2.Controllers
         public IActionResult Index(string sortOrder)
         {
 
-            var contacts = new IList<Contact>[]
+            List<Contact> contacts = new List<Contact>()
             {
                 new Contact{Id = 1, Name="dave", City="Seattle", State="WA", Phone="123"},
                 new Contact{Id = 2, Name="mike", City="Spokane", State="WA", Phone="234"},
@@ -54,31 +54,31 @@ namespace Homework2.Controllers
                 {
                     case "id":
                         {
-                            contacts = contacts.OrderByDescending(s => s.Id).ToArray();
+                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.Id);
                             break;
                         }
                     case "name":
                         {
-                            contacts = contacts.OrderByDescending(s => s.Name).ToArray();
+                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.Name);
                             break;
                         }
                     case "city":
                         {
-                            contacts = contacts.OrderByDescending(s => s.City).ToArray();
+                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.City);
                             break;
                         }
                     case "state":
                         {
-                            contacts = contacts.OrderByDescending(s => s.State).ToArray();
+                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.State);
                             break;
                         }
                     case "phone":
                         {
-                            contacts = contacts.OrderByDescending(s => s.Phone).ToArray();
+                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.Phone);
                             break;
                         }
                     default:
-                        contacts = contacts.OrderBy(s => s.Id).ToArray();
+                        contacts = (List<Contact>)contacts.OrderBy(s => s.Id);
                         break;
                 }
             }
