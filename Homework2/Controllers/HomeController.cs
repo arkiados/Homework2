@@ -54,36 +54,36 @@ namespace Homework2.Controllers
                 {
                     case "id":
                         {
-                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.Id);
+                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.Id);
                             break;
                         }
                     case "name":
                         {
-                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.Name);
+                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.Name);
                             break;
                         }
                     case "city":
                         {
-                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.City);
+                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.City);
                             break;
                         }
                     case "state":
                         {
-                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.State);
+                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.State);
                             break;
                         }
                     case "phone":
                         {
-                            contacts = (List<Contact>)contacts.OrderByDescending(s => s.Phone);
+                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.Phone);
                             break;
                         }
                     default:
-                        contacts = (List<Contact>)contacts.OrderBy(s => s.Id);
+                        contacts = (List<Contact>)Contacts.OrderBy(s => s.Id);
                         break;
                 }
             }
 
-            return View(contacts);
+            return View(this);
         }
 
         public IActionResult Privacy()
