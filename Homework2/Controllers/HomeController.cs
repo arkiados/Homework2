@@ -34,7 +34,7 @@ namespace Homework2.Controllers
         public IActionResult Index(string sortOrder)
         {
 
-            List<Contact> contacts = new List<Contact>()
+            IList<HomeController.Contact> contacts = new List<HomeController.Contact>()
             {
                 new Contact{Id = 1, Name="dave", City="Seattle", State="WA", Phone="123"},
                 new Contact{Id = 2, Name="mike", City="Spokane", State="WA", Phone="234"},
@@ -59,7 +59,10 @@ namespace Homework2.Controllers
                         }
                     case "name":
                         {
-                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.Name);
+                            //contacts = (IList<Contact>)contacts.OrderByDescending(s => s.Name);
+                            contacts = from s in contacts
+                                       orderby s.Name
+                                       select new { s.Name };
                             break;
                         }
                     case "city":
