@@ -14,33 +14,23 @@ namespace Homework2.Controllers
             _logger = logger;
         }
 
-        public class Contact
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string City { get; set; }
-            public string State { get; set; }
-            public string Phone { get; set; }
-        }
-
         public string IdSort { get; set; }
         public string NameSort { get; set; }
         public string CitySort { get; set; }
         public string StateSort { get; set; }
         public string PhoneSort { get; set; }
 
-        public IList<Contact> Contacts { get; set; }
+        public List<Contact> Contacts { get; set; }
 
         public IActionResult Index(string sortOrder)
         {
 
-            IList<HomeController.Contact> contacts = new List<HomeController.Contact>()
-            {
-                new Contact{Id = 1, Name="dave", City="Seattle", State="WA", Phone="123"},
-                new Contact{Id = 2, Name="mike", City="Spokane", State="WA", Phone="234"},
-                new Contact{Id = 3, Name="lisa", City="San Jose", State="CA", Phone="345"},
-                new Contact{Id = 4, Name="cathy", City="Dallas", State="TX", Phone="456"},
-            };
+            List<Contact> contacts = new List<Contact>();
+            contacts.Add(new Contact() { Id = 1, Name = "dave", City = "Seattle", State = "WA", Phone = "123" });
+            contacts.Add(new Contact() { Id = 2, Name = "mike", City = "Spokane", State = "WA", Phone = "234" });
+            contacts.Add(new Contact() { Id = 3, Name = "lisa", City = "San Jose", State = "CA", Phone = "345" });
+            contacts.Add(new Contact() { Id = 4, Name = "cathy", City = "Dallas", State = "TX", Phone = "456" });
+
 
             IdSort = String.IsNullOrEmpty(sortOrder) ? "id" : "";
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name" : "";
@@ -54,38 +44,35 @@ namespace Homework2.Controllers
                 {
                     case "id":
                         {
-                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.Id);
+                            contacts = contacts.OrderByDescending(s => s.Name).ToList();
                             break;
                         }
                     case "name":
                         {
-                            //contacts = (IList<Contact>)contacts.OrderByDescending(s => s.Name);
-                            contacts = from s in contacts
-                                       orderby s.Name
-                                       select new { s.Name };
+                            contacts = contacts.OrderByDescending(s => s.Name).ToList();
                             break;
                         }
                     case "city":
                         {
-                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.City);
+                            contacts = contacts.OrderByDescending(s => s.City).ToList();
                             break;
                         }
                     case "state":
                         {
-                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.State);
+                            contacts = contacts.OrderByDescending(s => s.State).ToList();
                             break;
                         }
                     case "phone":
                         {
-                            contacts = (List<Contact>)Contacts.OrderByDescending(s => s.Phone);
+                            contacts = contacts.OrderByDescending(s => s.Phone).ToList();
                             break;
                         }
                     default:
-                        contacts = (List<Contact>)Contacts.OrderBy(s => s.Id);
+                        contacts = contacts.OrderBy(s => s.Id).ToList();
                         break;
                 }
             }
-
+            Contacts = contacts;
             return View(this);
         }
 
